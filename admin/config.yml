@@ -1,19 +1,15 @@
 backend:
   name: github
-  repo: infostudent786/saas-schl-gitauth.git # Change this for each school instance
+  repo: infostudent786/SaaS
   branch: main
-  # Future-proof Auth: Point this to your free OAuth proxy (e.g., hosted on Vercel or Netlify)
-  # See README.md for setup instructions for your Micro-SaaS
-  base_url: https://your-oauth-proxy.vercel.app 
-  auth_endpoint: auth
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
 
-# Local testing: Run `npx decap-cms-proxy-server` to test locally
-local_backend: true
+
 
 collections:
+
   - name: "config"
     label: "Site Settings"
     delete: false
