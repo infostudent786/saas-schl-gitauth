@@ -1,0 +1,32 @@
+{
+  "schoolName": "The Royal Indian Academy",
+  "tagline": "Empowering Minds, Shaping Futures • CBSE Affiliated",
+  "logoUrl": "https://img.icons8.com/fluency/96/school.png",
+  "heroImageUrl": "https://images.unsplash.com/photo-1523050335392-9bc5ad06fe33?q=80&w=2070&auto=format&fit=crop",
+  "principalImageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop",
+  "primaryColor": "#0c2340",
+  "secondaryColor": "#d4af37",
+  "formActionUrl": "https://formspree.io/f/your-id-here",
+  "contact": {
+    "address": "Block B, Sector 45, Knowledge Park, New Delhi - 110001",
+    "phone": "+91 11 2345 6789",
+    "email": "admissions@royalacademy.edu.in",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.518641154563!2d77.2219!3d28.6139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM2JzUwLjAiTiA3N8KwMTMnMTguOCJF!5e0!3m2!1sen!2sin!4v1625123456789!5m2!1sen!2sin"
+  },
+  "socials": {
+    "facebook": "https://facebook.com",
+    "twitter": "https://twitter.com",
+    "instagram": "https://instagram.com",
+    "youtube": "https://youtube.com"
+  },
+  "navigation": [
+    { "label": "Home", "path": "/" },
+    { "label": "About Us", "path": "/about" },
+    { "label": "Academics", "path": "/academics" },
+    { "label": "Admissions", "path": "/admissions" },
+    { "label": "Exams & Results", "path": "/exams" },
+    { "label": "Digital Library", "path": "/library" },
+    { "label": "Gallery", "path": "/gallery" },
+    { "label": "Contact", "path": "/contact" }
+  ]
+}

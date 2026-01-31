@@ -1,0 +1,78 @@
+backend:
+  name: github
+  repo: your-username/your-school-repo # Change this for each school instance
+  branch: main
+  # Future-proof Auth: Point this to your free OAuth proxy (e.g., hosted on Vercel or Netlify)
+  # See README.md for setup instructions for your Micro-SaaS
+  base_url: https://your-oauth-proxy.vercel.app 
+  auth_endpoint: auth
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+# Local testing: Run `npx decap-cms-proxy-server` to test locally
+local_backend: true
+
+collections:
+  - name: "config"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "General Configuration"
+        file: "config/site.json"
+        fields:
+          - { label: "School Name", name: "schoolName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Logo URL", name: "logoUrl", widget: "image" }
+          - { label: "Hero Background Image", name: "heroImageUrl", widget: "image" }
+          - { label: "Principal Photo", name: "principalImageUrl", widget: "image" }
+          - { label: "Primary Theme Color", name: "primaryColor", widget: "color" }
+          - { label: "Secondary Color", name: "secondaryColor", widget: "color" }
+          - { label: "Form Submission URL (Formspree)", name: "formActionUrl", widget: "string" }
+          - { label: "Contact Info", name: "contact", widget: "object", fields: [
+              { label: "Address", name: "address", widget: "text" },
+              { label: "Phone", name: "phone", widget: "string" },
+              { label: "Email", name: "email", widget: "string" },
+              { label: "Map Embed URL", name: "mapEmbedUrl", widget: "string" }
+            ] }
+          - { label: "Social Links", name: "socials", widget: "object", fields: [
+              { label: "Facebook", name: "facebook", widget: "string", required: false },
+              { label: "Twitter", name: "twitter", widget: "string", required: false },
+              { label: "Instagram", name: "instagram", widget: "string", required: false }
+            ] }
+
+  - name: "notices"
+    label: "Notices"
+    folder: "content/notices"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Academic", "Administrative", "Event"] }
+      - { label: "Content Body", name: "body", widget: "markdown" }
+
+  - name: "results"
+    label: "Exams & Results"
+    folder: "content/results"
+    create: true
+    fields:
+      - { label: "Examination Title", name: "title", widget: "string" }
+      - { label: "Grade", name: "grade", widget: "string" }
+      - { label: "Session", name: "session", widget: "string" }
+      - { label: "Status", name: "status", widget: "select", options: ["Published", "Archive", "Upcoming"] }
+      - { label: "Marksheet PDF", name: "pdf", widget: "file", required: false }
+
+  - name: "library"
+    label: "Digital Library"
+    folder: "content/library"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Resource Type", name: "type", widget: "select", options: ["E-Book", "PDF", "Video"] }
+      - { label: "Category", name: "cat", widget: "string" }
+      - { label: "Resource Link", name: "link", widget: "string", required: false }
+      - { label: "Upload File", name: "file", widget: "file", required: false }
