@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/your-school-repo # Change this for each school instance
+  repo: infostudent786/saas-schl-gitauth.git # Change this for each school instance
   branch: main
   # Future-proof Auth: Point this to your free OAuth proxy (e.g., hosted on Vercel or Netlify)
   # See README.md for setup instructions for your Micro-SaaS
