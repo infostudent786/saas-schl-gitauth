@@ -2,6 +2,10 @@ backend:
   name: github
   repo: infostudent786/SaaS
   branch: main
+  auth_type: implicit
+
+site_url: https://infostudent786.github.io
+publish_mode: editorial_workflow
 
 media_folder: "public/assets/uploads"
 public_folder: "/assets/uploads"
