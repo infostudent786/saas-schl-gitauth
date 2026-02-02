@@ -1,13 +1,15 @@
 backend:
   name: github
-  repo: infostudent786/SaaS
+  repo: infostudent786/saas-schl-gitauth
   branch: main
   auth_type: implicit
+  base_url: https://infostudent786.github.io
 
-site_url: https://infostudent786.github.io
+site_url: https://infostudent786.github.io/saas-schl-gitauth
+display_url: https://infostudent786.github.io/saas-schl-gitauth
 publish_mode: editorial_workflow
 
-media_folder: "public/assets/uploads"
+media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
