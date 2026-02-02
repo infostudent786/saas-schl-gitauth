@@ -1,23 +1,73 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard | The Royal Indian Academy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    /* Custom School Branding for Admin Panel */
-    .nc-app-container { font-family: 'Inter', sans-serif !important; }
-    .nc-app-header-container { background-color: #0c2340 !important; }
-    .nc-app-header-logo { color: #d4af37 !important; font-weight: 900 !important; }
-    .nc-ui-button-primary { background-color: #0c2340 !important; border-radius: 9999px !important; }
-    .nc-ui-button-primary:hover { opacity: 0.9 !important; }
-  </style>
-</head>
-<body>
-  <!-- Decap CMS: The future-proof, community-maintained successor to Netlify CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin | The Royal Indian Academy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- IMPORTANT: prevent auto-init -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+
+    <script src="https://unpkg.com/decap-cms@3/dist/decap-cms.js"></script>
+  </head>
+  <body>
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "infostudent786/saas-schl-gitauth",
+            branch: "main",
+            auth_type: "pkce",
+            base_url: "https://decapcms-auth.netlify.app"
+          },
+
+          site_url: "https://infostudent786.github.io/saas-schl-gitauth",
+          display_url: "https://infostudent786.github.io/saas-schl-gitauth",
+          publish_mode: "editorial_workflow",
+
+          media_folder: "assets/uploads",
+          public_folder: "/assets/uploads",
+
+          collections: [
+            {
+              name: "notices",
+              label: "Notices",
+              folder: "content/notices",
+              create: true,
+              slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Date", name: "date", widget: "datetime" },
+                { label: "Body", name: "body", widget: "markdown" }
+              ]
+            },
+            {
+              name: "library",
+              label: "Library",
+              folder: "content/library",
+              create: true,
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                {
+                  label: "Type",
+                  name: "type",
+                  widget: "select",
+                  options: ["PDF", "E-Book", "Video"]
+                },
+                {
+                  label: "File",
+                  name: "file",
+                  widget: "file",
+                  required: false
+                }
+              ]
+            }
+          ]
+        }
+      });
+    </script>
+  </body>
 </html>
