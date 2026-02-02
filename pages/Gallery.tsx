@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
-const Gallery = ({ config }) => {
-  const images = Array.from({ length: 9 }).map((_, i) => ({
-    url: `https://picsum.photos/seed/school${i + 20}/800/600`,
-    title: `Event ${i + 1}`,
-    cat: i % 2 === 0 ? "Campus Life" : "Sports Meet"
-  }));
+type Image = {
+  url: string;
+  title: string;
+  cat: string;
+};
+
+const Gallery = ({ config }: { config: any }) => {
+  const [images, setImages] = useState<Image[]>([]);
+
+  useEffect(() => {
+    const loadGallery = async () => {
+      const modules = import.meta.glob("/content/gallery/*.json", { as: "json" });
+      const data: Image[] = [];
+      for (const path in modules) {
+        const res = await modules[path]();
+        data.push(...res);
+      }
+      setImages(data);
+    };
+    loadGallery();
+  }, []);
 
   return (
     <div className="animate-fadeIn py-24 bg-slate-50 min-h-screen">
