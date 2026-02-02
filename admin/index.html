@@ -1,16 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
   <title>Admin | The Royal Indian Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- STOP Decap auto-loading config.yml -->
+  
+  <!-- CRITICAL: Disable config.yml loading FIRST -->
   <script>
     window.CMS_MANUAL_INIT = true;
   </script>
-
-  <script src="https://unpkg.com/decap-cms@3.1.0/dist/decap-cms.js"></script>
+  
+  <!-- STABLE VERSION - NO BETAS -->
+  <script src="https://unpkg.com/decap-cms@3.2.5/dist/decap-cms.js"></script>
 </head>
 <body>
   <script>
@@ -22,14 +23,11 @@
         auth_type: "pkce",
         base_url: "https://decapcms-auth.netlify.app"
       },
-
       site_url: "https://infostudent786.github.io/saas-schl-gitauth",
       display_url: "https://infostudent786.github.io/saas-schl-gitauth",
       publish_mode: "editorial_workflow",
-
       media_folder: "assets/uploads",
       public_folder: "/assets/uploads",
-
       collections: [
         {
           name: "notices",
@@ -44,7 +42,7 @@
           ]
         },
         {
-          name: "library",
+          name: "library", 
           label: "Library",
           folder: "content/library",
           create: true,
