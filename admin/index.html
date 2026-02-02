@@ -2,58 +2,76 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Admin | The Royal Indian Academy</title>
+  <title>Admin Debug</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- CRITICAL: Disable config.yml loading FIRST -->
-  <script>
-    window.CMS_MANUAL_INIT = true;
-  </script>
-  
-  <!-- STABLE VERSION - NO BETAS -->
-  <script src="https://unpkg.com/decap-cms@3.2.5/dist/decap-cms.js"></script>
 </head>
-<body>
+<body style="font-family: monospace; padding: 20px;">
+  <h1>🔍 Decap CMS Debug</h1>
+  <div id="status">Loading...</div>
+  
+  <!-- Debug flags FIRST -->
   <script>
-    CMS.init({
-      backend: {
-        name: "github",
-        repo: "infostudent786/saas-schl-gitauth",
-        branch: "main",
-        auth_type: "pkce",
-        base_url: "https://decapcms-auth.netlify.app"
-      },
-      site_url: "https://infostudent786.github.io/saas-schl-gitauth",
-      display_url: "https://infostudent786.github.io/saas-schl-gitauth",
-      publish_mode: "editorial_workflow",
-      media_folder: "assets/uploads",
-      public_folder: "/assets/uploads",
-      collections: [
-        {
-          name: "notices",
-          label: "Notices",
-          folder: "content/notices",
-          create: true,
-          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Date", name: "date", widget: "datetime" },
-            { label: "Body", name: "body", widget: "markdown" }
-          ]
-        },
-        {
-          name: "library", 
-          label: "Library",
-          folder: "content/library",
-          create: true,
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Type", name: "type", widget: "select", options: ["PDF", "E-Book", "Video"] },
-            { label: "File", name: "file", widget: "file", required: false }
-          ]
+    console.log("1. CMS_MANUAL_INIT set");
+    window.CMS_MANUAL_INIT = true;
+    
+    // Load Decap with error catching
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@3.2.5/dist/decap-cms.js';
+      script.onload = () => {
+        document.getElementById('status').innerHTML = '✅ Decap CMS loaded. Initializing...';
+        console.log("2. Decap loaded, calling CMS.init()");
+        try {
+          CMS.init({
+            backend: {
+              name: "github",
+              repo: "infostudent786/saas-schl-gitauth",
+              branch: "main",
+              auth_type: "pkce",
+              base_url: "https://decapcms-auth.netlify.app"
+            },
+            site_url: "https://infostudent786.github.io/saas-schl-gitauth",
+            display_url: "https://infostudent786.github.io/saas-schl-gitauth",
+            publish_mode: "editorial_workflow",
+            media_folder: "assets/uploads",
+            public_folder: "/assets/uploads",
+            collections: [
+              {
+                name: "notices",
+                label: "Notices",
+                folder: "content/notices",
+                create: true,
+                slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Date", name: "date", widget: "datetime" },
+                  { label: "Body", name: "body", widget: "markdown" }
+                ]
+              },
+              {
+                name: "library", 
+                label: "Library",
+                folder: "content/library",
+                create: true,
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Type", name: "type", widget: "select", options: ["PDF", "E-Book", "Video"] },
+                  { label: "File", name: "file", widget: "file" }
+                ]
+              }
+            ]
+          });
+          document.getElementById('status').innerHTML = '✅ CMS.init() called successfully!';
+        } catch(e) {
+          document.getElementById('status').innerHTML = '❌ CMS.init() ERROR: ' + e.message;
+          console.error("CMS.init() failed:", e);
         }
-      ]
-    });
+      };
+      script.onerror = () => {
+        document.getElementById('status').innerHTML = '❌ Failed to load Decap CMS script';
+      };
+      document.head.appendChild(script);
+    })();
   </script>
 </body>
 </html>
