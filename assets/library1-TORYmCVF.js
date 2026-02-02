@@ -1,0 +1,1 @@
+const t=[{title:"Class 10 Math NCERT",type:"E-Book",cat:"Textbooks",link:"/library/math10.pdf"},{title:"Quantum Physics Intro",type:"Video",cat:"Lectures",link:"/library/quantum.mp4"}];export{t as default};
