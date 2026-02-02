@@ -3,7 +3,7 @@ backend:
   repo: infostudent786/saas-schl-gitauth
   branch: main
   auth_type: implicit
-  base_url: https://infostudent786.github.io
+  base_url: https://decapcms-auth.netlify.app
 
 site_url: https://infostudent786.github.io/saas-schl-gitauth
 display_url: https://infostudent786.github.io/saas-schl-gitauth
