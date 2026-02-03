@@ -1,7 +1,7 @@
 backend:
-  name: github              # ← REAL GitHub
+  name: github
   repo: infostudent786/saas-schl-gitauth
-  branch: main              # ← Your main branch
+  branch: main
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
