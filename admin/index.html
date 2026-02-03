@@ -4,24 +4,17 @@
   <meta charset="utf-8">
   <title>Admin</title>
   
-  <!-- FORCE DISABLE ALL CONFIG LOADING -->
+  <!-- DISABLE YAML LOADING -->
   <script>window.CMS_MANUAL_INIT = true</script>
-  <script>
-    // Monkey patch to BLOCK config.yml requests
-    window.fetch = function(...args) {
-      if (args[0] && args[0].includes && args[0].includes('config.yml')) {
-        return Promise.reject(new Error('Blocked config.yml'));
-      }
-      return fetch.apply(this, args);
-    };
-  </script>
   
-  <!-- PROVEN WORKING VERSION -->
+  <!-- STABLE VERSION -->
   <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
   <script>
-    CMS.init({
+    CMS.init({ 
+      load_config_file: false,  <!-- THIS IS THE KEY -->
+      
       backend: {
         name: "github",
         repo: "infostudent786/saas-schl-gitauth",
