@@ -2,7 +2,6 @@ backend:
   name: github
   repo: infostudent786/saas-schl-gitauth
   branch: main
-  token: ${CMS_GITHUB_TOKEN}  # ← Reads from .env
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
