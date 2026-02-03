@@ -4,44 +4,51 @@
   <meta charset="utf-8">
   <title>Admin</title>
   <script>window.CMS_MANUAL_INIT = true</script>
-  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+  <!-- WORKING 2.10.13 CDN -->
+  <script src="https://unpkg.com/netlify-cms@2.10.13/dist/netlify-cms.js"></script>
 </head>
 <body>
   <script>
-    CMS.init({ 
-      backend: {
-        name: "github",
-        repo: "infostudent786/saas-schl-gitauth",
-        branch: "main",
-        auth_type: "pkce"
-      },
-      media_folder: "assets/uploads",
-      public_folder: "/assets/uploads",
-      collections: [
-        {
-          name: "notices",
-          label: "Notices",
-          folder: "content/notices",
-          create: true,
-          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Date", name: "date", widget: "datetime" },
-            { label: "Body", name: "body", widget: "markdown" }
-          ]
+    window.addEventListener('load', function() {
+      if (typeof window.NetlifyCmsApp === 'undefined') {
+        document.body.innerHTML = '<h1>❌ Netlify CMS 2.10.13 failed to load. Check console.</h1>';
+        return;
+      }
+      
+      window.NetlifyCmsApp.init({
+        backend: {
+          name: "github",
+          repo: "infostudent786/saas-schl-gitauth",
+          branch: "main"
         },
-        {
-          name: "library",
-          label: "Library",
-          folder: "content/library",
-          create: true,
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Type", name: "type", widget: "select", options: ["PDF", "E-Book", "Video"] },
-            { label: "File", name: "file", widget: "file" }
-          ]
-        }
-      ]
+        media_folder: "assets/uploads",
+        public_folder: "/assets/uploads",
+        collections: [
+          {
+            name: "notices",
+            label: "Notices",
+            folder: "content/notices",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Date", name: "date", widget: "datetime" },
+              { label: "Body", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "library",
+            label: "Library",
+            folder: "content/library",
+            create: true,
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Type", name: "type", widget: "select", options: ["PDF", "E-Book", "Video"] },
+              { label: "File", name: "file", widget: "file" }
+            ]
+          }
+        ]
+      });
     });
   </script>
 </body>
