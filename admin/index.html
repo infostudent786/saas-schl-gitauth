@@ -3,58 +3,58 @@
 <head>
   <meta charset="utf-8">
   <title>Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <!-- TRIPLE MANUAL INIT - OVERRIDES ALL FALLBACKS -->
-  <script>window.CMS_MANUAL_INIT = true;</script>
-  <script>window.DecapCmsCoreConfig = { load_config_file: false };</script>
-  <script>window.CMS_CONFIG = null;</script>
+  <!-- FORCE DISABLE ALL CONFIG LOADING -->
+  <script>window.CMS_MANUAL_INIT = true</script>
+  <script>
+    // Monkey patch to BLOCK config.yml requests
+    window.fetch = function(...args) {
+      if (args[0] && args[0].includes && args[0].includes('config.yml')) {
+        return Promise.reject(new Error('Blocked config.yml'));
+      }
+      return fetch.apply(this, args);
+    };
+  </script>
   
-  <!-- UNPKG LATEST STABLE -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- PROVEN WORKING VERSION -->
+  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
   <script>
-    // FORCE CMS INIT AFTER LOAD
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.CMS) {
-        CMS.init({
-          backend: {
-            name: "github",
-            repo: "infostudent786/saas-schl-gitauth",
-            branch: "main",
-            auth_type: "pkce"
-          },
-          site_url: "https://infostudent786.github.io/saas-schl-gitauth",
-          media_folder: "assets/uploads",
-          public_folder: "/assets/uploads",
-          collections: [
-            {
-              name: "notices",
-              label: "Notices",
-              folder: "content/notices",
-              create: true,
-              slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-              fields: [
-                { label: "Title", name: "title", widget: "string" },
-                { label: "Date", name: "date", widget: "datetime" },
-                { label: "Body", name: "body", widget: "markdown" }
-              ]
-            },
-            {
-              name: "library",
-              label: "Library",
-              folder: "content/library",
-              create: true,
-              fields: [
-                { label: "Title", name: "title", widget: "string" },
-                { label: "Type", name: "type", widget: "select", options: ["PDF", "E-Book", "Video"] },
-                { label: "File", name: "file", widget: "file" }
-              ]
-            }
+    CMS.init({
+      backend: {
+        name: "github",
+        repo: "infostudent786/saas-schl-gitauth",
+        branch: "main",
+        auth_type: "pkce"
+      },
+      media_folder: "assets/uploads",
+      public_folder: "/assets/uploads",
+      collections: [
+        {
+          name: "notices",
+          label: "Notices",
+          folder: "content/notices",
+          create: true,
+          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+          fields: [
+            { label: "Title", name: "title", widget: "string" },
+            { label: "Date", name: "date", widget: "datetime" },
+            { label: "Body", name: "body", widget: "markdown" }
           ]
-        });
-      }
+        },
+        {
+          name: "library",
+          label: "Library",
+          folder: "content/library",
+          create: true,
+          fields: [
+            { label: "Title", name: "title", widget: "string" },
+            { label: "Type", name: "type", widget: "select", options: ["PDF", "E-Book", "Video"] },
+            { label: "File", name: "file", widget: "file" }
+          ]
+        }
+      ]
     });
   </script>
 </body>
