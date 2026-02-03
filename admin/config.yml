@@ -3,6 +3,7 @@ backend:
   repo: infostudent786/saas-schl-gitauth
   branch: main
   auth_type: pkce
+  base_url: https://decapcms-auth.netlify.app  # Pure PKCE endpoint
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
