@@ -3,18 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Admin</title>
-  
-  <!-- DISABLE YAML LOADING -->
   <script>window.CMS_MANUAL_INIT = true</script>
-  
-  <!-- STABLE VERSION -->
   <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
   <script>
     CMS.init({ 
-      load_config_file: false,  <!-- THIS IS THE KEY -->
-      
       backend: {
         name: "github",
         repo: "infostudent786/saas-schl-gitauth",
