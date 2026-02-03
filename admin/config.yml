@@ -1,6 +1,7 @@
 backend:
-  name: test-repo  # FAKE BACKEND - tests your config
-  site_id: test
+  name: github              # ← REAL GitHub
+  repo: infostudent786/saas-schl-gitauth
+  branch: main              # ← Your main branch
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
